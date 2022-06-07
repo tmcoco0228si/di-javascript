@@ -83,6 +83,6 @@
     } else {
       currentNum++;
       setQuiz();
-    }
+    }     
   });
 }

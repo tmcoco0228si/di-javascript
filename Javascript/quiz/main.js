@@ -20,9 +20,11 @@
   let isAnswerd;
   let score = 0;
 
-  //問題シャッフル
+  //問題シャッフル、フィッシャー・イェーツのシャッフル
   function shuffle(arr) {
+    //最後の要素iを前方の要素に進めたい為,,最後の要素i番目から降っていくのでi--にしている。
     for (let i = arr.length - 1; i > 0; i--) {
+      // 最後の要素のインデックスを含む為に、i + 1(0以上i未満)
       const j = Math.floor(Math.random() * (i + 1));
       [arr[j], arr[i]] = [arr[i], arr[j]];
     }
@@ -70,6 +72,7 @@
 
   setQuiz();
 
+  
   btn.addEventListener("click", () => {
     if (btn.classList.contains("disabled")) {
       return;
@@ -77,6 +80,7 @@
 
     btn.classList.add("disabled");
 
+    //問題解答後の処理
     if (currentNum === quizSet.length - 1) {
       scoreLabel.textContent = `Score: ${score} / ${quizSet.length}`;
       result.classList.remove("hidden");

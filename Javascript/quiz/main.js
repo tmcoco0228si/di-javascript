@@ -17,7 +17,6 @@
   ]);
   ///問題と解答内容を選択する為に使用する値
   let currentNum = 0;
-  let isAnswerd;
   let score = 0;
 
   //問題シャッフル、フィッシャー・イェーツのシャッフル

@@ -4,13 +4,21 @@
   const question = document.getElementById("question");
   const choices = document.getElementById("choices");
   const btn = document.getElementById("btn");
+  const result = document.getElementById("result");
+  const scoreLabel = document.querySelector("#result > p");
 
-  const quizSet = [
-    { q: "what is A?", c: ["A0", "A1", "A2"] },
-    { q: "what is B?", c: ["B0", "B1", "B2"] },
-    { q: "what is C?", c: ["C0", "C1", "C2"] },
-  ];
+  const quizSet = shuffle([
+    { q: "世界で一番大きな湖は?", c: ["カスピ海", "カリブ海", "琵琶湖"] },
+    { q: "2の8乗は?", c: ["256", "64", "1024"] },
+    {
+      q: "次の内最初にリリースされた言語は?",
+      c: ["Python", "Javascript", "HTML"],
+    },
+  ]);
+  ///問題と解答内容を選択する為に使用する値
   let currentNum = 0;
+  let isAnswerd;
+  let score = 0;
 
   //問題シャッフル
   function shuffle(arr) {
@@ -25,6 +33,8 @@
   function checkAnswer(li) {
     if (li.textContent === quizSet[currentNum].c[0]) {
       li.classList.add("correct");
+      //正解すれば正解数が1加算される。
+      score++;
     } else {
       li.classList.add("wrong");
     }
@@ -51,12 +61,28 @@
       });
       choices.appendChild(li);
     });
+
+    //最後の問題になると表示されるテキストを変更する。
+    if (currentNum === quizSet.length - 1) {
+      btn.textContent = "Show Score";
+    }
   }
 
   setQuiz();
 
   btn.addEventListener("click", () => {
-    currentNum++;
-    setQuiz();
+    if (btn.classList.contains("disabled")) {
+      return;
+    }
+
+    btn.classList.add("disabled");
+
+    if (currentNum === quizSet.length - 1) {
+      scoreLabel.textContent = `Score: ${score} / ${quizSet.length}`;
+      result.classList.remove("hidden");
+    } else {
+      currentNum++;
+      setQuiz();
+    }
   });
 }

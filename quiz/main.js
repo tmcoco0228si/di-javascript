@@ -10,13 +10,24 @@
     { q: "what is B?", c: ["B0", "B1", "B2"] },
     { q: "what is C?", c: ["C0", "C1", "C2"] },
   ];
-
   let currentNum = 0;
-  //配列quizSetの
+
   question.textContent = quizSet[currentNum].q;
-  quizSet[currentNum].c.forEach(choice => {
-      const li = document.createElement("li");
-      li.textContent = choice;
-      choices.appendChild(li)
-  })
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[j], arr[i]] = [arr[i], arr[j]];
+    }
+    return arr;
+  }
+
+  const shuffledChoices = shuffle([...quizSet[currentNum].c]);
+ 
+  // console.log(quizSet[currentNum].c);
+  shuffledChoices.forEach((choice) => {
+    const li = document.createElement("li");
+    li.textContent = choice;
+    choices.appendChild(li);
+  });
 }

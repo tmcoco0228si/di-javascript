@@ -29,10 +29,33 @@ body {
   margin-bottom: 10px;
   cursor: pointer;
 }
-
 #choices > li:hover {
   background: #f8f8f8;
 }
+
+#choices > li.correct {
+  background: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+  font-weight: bold;
+}
+
+/* ::after  */
+#choices > li.correct::after {
+  content: ' ... correct!';
+}
+
+#choices > li.wrong {
+  background: #f8d8da;
+  border-color: #f5c6cb;
+  color: #721c24;
+  font-weight: bold;
+}
+
+#choices > li.wrong::after {
+  content: ' ... wrong!';
+}
+
 #btn {
   background: #3498db;
   padding: 8px;
@@ -43,10 +66,8 @@ body {
   box-shadow: 0 4px 0 #2880b9;
 }
 
-/* ボタン無効 :disabled */
 #btn.disabled {
-    background: #ccc;
+  background: #ccc;
   box-shadow: 0 4px 0 #bbb;
   opacity: 0.7;
-
 }

@@ -54,13 +54,15 @@
     const shuffledChoices = shuffle([...quizSet[currentNum].c]);
 
     // console.log(quizSet[currentNum].c);
+    //問題をシャッフルする処理
     shuffledChoices.forEach((choice) => {
       const li = document.createElement("li");
       li.textContent = choice;
+
+      choices.appendChild(li);
       li.addEventListener("click", () => {
         checkAnswer(li);
       });
-      choices.appendChild(li);
     });
 
     //最後の問題になると表示されるテキストを変更する。
@@ -71,7 +73,6 @@
 
   setQuiz();
 
-  
   btn.addEventListener("click", () => {
     if (btn.classList.contains("disabled")) {
       return;
@@ -86,6 +87,6 @@
     } else {
       currentNum++;
       setQuiz();
-    }     
+    }
   });
 }
